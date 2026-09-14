@@ -38,6 +38,13 @@ export const FilterToolbar: React.FC = () => {
     filters.tag !== '' ||
     filters.search !== '';
 
+  const activeFilterCount = [
+    filters.status !== 'all',
+    filters.priority !== 'all',
+    filters.tag !== '',
+    filters.search !== '',
+  ].filter(Boolean).length;
+
   return (
     <div className="glass-panel rounded-2xl p-3 border border-white/10 flex flex-wrap items-center justify-between gap-3 shadow-[0_0_20px_rgba(0,0,0,0.4)] backdrop-blur-2xl">
       {/* Search Input */}
@@ -65,6 +72,11 @@ export const FilterToolbar: React.FC = () => {
         {/* Status Filter */}
         <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 rounded-xl px-2.5 py-1.5">
           <Filter className="w-3.5 h-3.5 text-violet-400" />
+          {activeFilterCount > 0 && (
+            <span className="min-w-4 h-4 px-1 rounded-full bg-violet-500/25 text-violet-200 text-[10px] font-bold leading-4 text-center">
+              {activeFilterCount}
+            </span>
+          )}
           <select
             value={filters.status}
             onChange={handleStatusChange}
