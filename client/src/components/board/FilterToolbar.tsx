@@ -54,13 +54,15 @@ export const FilterToolbar: React.FC = () => {
           type="text"
           value={filters.search}
           onChange={handleSearchChange}
+          aria-label="Search tasks"
           placeholder="Filter tasks by title or tag..."
           className="w-full bg-white/5 border border-white/10 rounded-xl pl-10 pr-4 py-2 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/30 transition-all font-mono"
         />
         {filters.search && (
           <button
             onClick={() => setFilters({ search: '' })}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+            aria-label="Clear task search"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/70 rounded"
           >
             <X className="w-3.5 h-3.5" />
           </button>
@@ -80,6 +82,7 @@ export const FilterToolbar: React.FC = () => {
           <select
             value={filters.status}
             onChange={handleStatusChange}
+            aria-label="Filter by status"
             className="bg-transparent text-xs text-slate-200 focus:outline-none cursor-pointer font-mono"
           >
             <option value="all" className="bg-[#05050a] text-white">All Statuses</option>
@@ -95,6 +98,7 @@ export const FilterToolbar: React.FC = () => {
           <select
             value={filters.priority}
             onChange={handlePriorityChange}
+            aria-label="Filter by priority"
             className="bg-transparent text-xs text-slate-200 focus:outline-none cursor-pointer font-mono"
           >
             <option value="all" className="bg-[#05050a] text-white">All Priorities</option>
@@ -110,6 +114,7 @@ export const FilterToolbar: React.FC = () => {
           <select
             value={filters.sort}
             onChange={handleSortChange}
+            aria-label="Sort tasks"
             className="bg-transparent text-xs text-slate-200 focus:outline-none cursor-pointer font-mono"
           >
             <option value="createdAt" className="bg-[#05050a] text-white">Sort: Created Date</option>

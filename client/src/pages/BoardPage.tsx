@@ -71,6 +71,7 @@ export const BoardPage: React.FC = () => {
   const todoTasks = tasks.filter((t) => t.status === 'todo');
   const inProgressTasks = tasks.filter((t) => t.status === 'in-progress');
   const doneTasks = tasks.filter((t) => t.status === 'done');
+  const completionRate = tasks.length ? Math.round((doneTasks.length / tasks.length) * 100) : 0;
 
   return (
     <div className="space-y-6 pb-24 lg:pb-12">
@@ -100,6 +101,20 @@ export const BoardPage: React.FC = () => {
             Launch Task
           </Button>
         </div>
+      </div>
+
+      <div className="glass-panel rounded-2xl border-white/10 px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-3">
+        <div className="flex items-center justify-between gap-4 min-w-44">
+          <span className="text-[11px] uppercase tracking-[0.2em] text-slate-400 font-mono">Mission progress</span>
+          <span className="text-sm font-bold text-cyan-300">{completionRate}%</span>
+        </div>
+        <div className="h-2 flex-1 rounded-full bg-white/10 overflow-hidden" role="progressbar" aria-label="Mission completion" aria-valuenow={completionRate} aria-valuemin={0} aria-valuemax={100}>
+          <div
+            className="h-full rounded-full bg-gradient-to-r from-violet-500 via-cyan-400 to-emerald-400 transition-all duration-700"
+            style={{ width: `${completionRate}%` }}
+          />
+        </div>
+        <span className="text-[11px] text-slate-500 font-mono">{doneTasks.length} of {tasks.length} complete</span>
       </div>
 
       {/* Filter Toolbar */}
